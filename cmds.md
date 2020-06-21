@@ -29,3 +29,9 @@ Update the username, password, and database values in the ormconfig.json file
 ```
 > yarn start
 ```
+
+## Setting up the GraphQL server
+```
+yarn add express apollo-server-express graphql
+yarn add -D @types/express @types/graphql
+```
