@@ -1,28 +1,24 @@
-import "reflect-metadata";
+import 'reflect-metadata';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
+import { buildSchema } from 'type-graphql';
+import { UserResolver } from './UserResolver';
 
 (async () => {
     const app = express();
+    const port = 4000;
     app.get('/', (_req, res) => res.send('Hello World!'));
 
     const apolloServer = new ApolloServer({
-        typeDefs: `
-        type Query {
-            hello: String!
-        }
-        `,
-        resolvers: {
-            Query: {
-                hello: () => "Hello World!"
-            }
-        }
+        schema: await buildSchema({
+            resolvers: [UserResolver]
+        })
     });
 
     apolloServer.applyMiddleware({ app });
 
-    app.listen(4000, () => {
-        console.log('Express server started...');
+    app.listen(port, () => {
+        console.log(`Express server started on port ${port}...`);
     })
 })()
 
