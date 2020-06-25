@@ -53,7 +53,7 @@ yarn add -D @types/jsonwebtoken
 ## Enabling Request Cookies
 In the settings of the GraphQL interface, change the value of "request.credentials" from "omit" to "include"
 
-
+## Storing token secrets in environment variables
 ```
 yarn add dotenv
 ```
