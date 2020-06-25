@@ -43,3 +43,9 @@ yarn add type-graphql
 yarn add bcryptjs
 yarn add -D @types/bcryptjs
 ```
+
+## Installing jsonwebtoken to generate and validate user access tokens
+```
+yarn add jsonwebtoken
+yarn add -D @types/jsonwebtoken
+```
