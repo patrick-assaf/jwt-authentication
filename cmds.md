@@ -49,3 +49,6 @@ yarn add -D @types/bcryptjs
 yarn add jsonwebtoken
 yarn add -D @types/jsonwebtoken
 ```
+
+## Enabling Request Cookies
+In the settings of the GraphQL interface, change the value of "request.credentials" from "omit" to "include"
