@@ -3,11 +3,14 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { buildSchema } from 'type-graphql';
 import { UserResolver } from './UserResolver';
+import { createConnection } from 'typeorm';
 
 (async () => {
     const app = express();
     const port = 4000;
     app.get('/', (_req, res) => res.send('Hello World!'));
+
+    await createConnection();
 
     const apolloServer = new ApolloServer({
         schema: await buildSchema({
@@ -21,6 +24,7 @@ import { UserResolver } from './UserResolver';
         console.log(`Express server started on port ${port}...`);
     })
 })()
+
 
 // createConnection().then(async connection => {
 

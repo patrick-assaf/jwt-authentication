@@ -36,7 +36,9 @@ yarn add express apollo-server-express graphql
 yarn add -D @types/express @types/graphql
 ```
 
-## Installing type-graphql to define our GraphQL schema 
+## Installing type-graphql to define schemas and bcryptjs to hash passwords
 ```
 yarn add type-graphql
+yarn add bcryptjs
+yarn add -D @types/bcryptjs
 ```
