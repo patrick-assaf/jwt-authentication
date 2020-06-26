@@ -1,8 +1,9 @@
-import { Resolver, Query, Mutation, Arg, ObjectType, Field, Ctx } from 'type-graphql';
+import { Resolver, Query, Mutation, Arg, ObjectType, Field, Ctx, UseMiddleware } from 'type-graphql';
 import { hash, compare } from 'bcryptjs';
 import { User } from './entity/User';
-import { myContext } from './myContext';
+import { MyContext } from './MyContext';
 import { createRefreshToken, createAccessToken } from './auth';
+import { isAuth } from './isAuth';
 
 @ObjectType()
 class LoginResponse {
@@ -17,6 +18,13 @@ export class UserResolver {
         return 'hi!';
     }
 
+    @Query(() => String)
+    @UseMiddleware(isAuth)
+    auth(@Ctx() { payload }: MyContext) {
+        console.log(payload);
+        return `Your user id is: ${payload!.userId}`;
+    }
+
     @Query(() => [User])
     users() {
         return User.find();
@@ -26,7 +34,7 @@ export class UserResolver {
     async login(
         @Arg('email') email: string,
         @Arg('password') password: string,
-        @Ctx() {res}: myContext
+        @Ctx() {res}: MyContext
     ): Promise<LoginResponse> {
         const user = await User.findOne({ where: { email } });
 
@@ -42,10 +50,7 @@ export class UserResolver {
 
         // login successful
 
-        res.cookie('jid', createRefreshToken(user), 
-           {
-               httpOnly: true,
-           });
+        res.cookie('jid', createRefreshToken(user), { httpOnly: true });
 
         return {
             accessToken: createAccessToken(user)
@@ -64,6 +69,33 @@ export class UserResolver {
                 email,
                 password: hashedPassword
             });
+        } catch (err) {
+            console.log(err);
+            return false;
+        }
+
+        return true;
+    }
+
+    @Mutation(() => Boolean)
+    async delete(
+        @Arg('email') email: string,
+        @Arg('password') password: string
+    ) {
+        const user = await User.findOne({ where: { email } });
+
+        if(!user) {
+            throw new Error ('Could not find user.');
+        }
+
+        const valid = await compare(password, user.password);
+
+        if(!valid) {
+            throw new Error ('Invalid password.');
+        }
+
+        try {
+            await User.delete(user.id)
         } catch (err) {
             console.log(err);
             return false;
