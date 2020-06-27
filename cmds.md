@@ -57,3 +57,9 @@ In the settings of the GraphQL interface, change the value of "request.credentia
 ```
 yarn add dotenv
 ```
+
+## Installing Cookie Parser
+```
+yarn add cookie-parser
+yarn add -D @types/cookie-parser
+```

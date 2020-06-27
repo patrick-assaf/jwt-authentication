@@ -5,11 +5,18 @@ import { ApolloServer } from 'apollo-server-express';
 import { buildSchema } from 'type-graphql';
 import { UserResolver } from './UserResolver';
 import { createConnection } from 'typeorm';
+import cookieParser from 'cookie-parser';
 
 (async () => {
     const app = express();
     const port = 4000;
+    app.use(cookieParser());
+
     app.get('/', (_req, res) => res.send('Hello World!'));
+
+    app.post('/refresh_token', req => {
+        console.log(req.cookies);
+    });
 
     await createConnection();
 
