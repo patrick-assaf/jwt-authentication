@@ -34,10 +34,15 @@ import { sendRefreshToken } from './sendRefreshToken';
         }
 
         // token is valid and we can send back access token
+
         const user = await User.findOne({ id: payload.userId });
 
         if(!user) {
             return res.send({ ok: false, accessToken: '' }); 
+        }
+
+        if(user.tokenVersion !== payload.tokenVersion) {
+            return res.send({ ok: false, accessToken: '' });
         }
 
         sendRefreshToken(res, createRefreshToken(user));
