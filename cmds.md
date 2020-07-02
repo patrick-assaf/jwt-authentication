@@ -63,3 +63,8 @@ yarn add dotenv
 yarn add cookie-parser
 yarn add -D @types/cookie-parser
 ```
+
+## Creating the front-end React application
+```
+npx create-react-app client --template typescript
+```
