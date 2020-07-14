@@ -76,3 +76,9 @@ yarn upgrade-interactive --latest
 yarn add apollo-boost @apollo/react-hooks graphql
 yarn add -D @types/graphql
 ```
+
+## Installing GraphQL Code Generator
+```
+yarn add -D @graphql-codegen/cli
+npx graphql-codegen init
+```
