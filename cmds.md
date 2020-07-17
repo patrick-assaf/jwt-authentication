@@ -82,3 +82,9 @@ yarn add -D @types/graphql
 yarn add -D @graphql-codegen/cli
 npx graphql-codegen init
 ```
+
+## Installing React Router
+```
+yarn add react-router-dom
+yarn add -D @types/react-router-dom
+```
