@@ -5,5 +5,5 @@ interface Props {
 }
 
 export const Home: React.FC<Props> = ({}) => {
-    return <div>Index</div>;
+    return <div>Home Page</div>;
 };
