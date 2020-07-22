@@ -77,10 +77,11 @@ yarn add apollo-boost @apollo/react-hooks graphql
 yarn add -D @types/graphql
 ```
 
-## Installing GraphQL Code Generator
+## Installing GraphQL Code Generator and Creating a Hook
 ```
 yarn add -D @graphql-codegen/cli
 npx graphql-codegen init
+yarn gen
 ```
 
 ## Installing React Router
