@@ -5,7 +5,7 @@
    "username": "postgres",
    "password": "postgres",
    "database": "jwt-auth-test",
-   "synchronize": false,
+   "synchronize": true,
    "logging": false,
    "entities": [
       "src/entity/**/*.ts"
