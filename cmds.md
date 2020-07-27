@@ -89,3 +89,9 @@ yarn gen
 yarn add react-router-dom
 yarn add -D @types/react-router-dom
 ```
+
+## Adding CORS as an Express middlewear
+```
+yarn add cors
+yarn add -D @types/cors
+```
